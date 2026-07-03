@@ -1,0 +1,75 @@
+# XBPS wrapper providing conventional syntax
+
+xbps() {
+    arg="$1"
+    shift
+    case "$arg" in
+        check | -Mun) xbps-install -Mun ;;
+        sync | refresh | ref) sudo xbps-install -S ;;
+        update | upgrade | up | -Su) sudo xbps-install -Su ;;
+        orphans | orphan | removeorphans) sudo xbps-remove -o ;;
+        clean | cleancache | wipe) sudo xbps-remove -O ;;
+        status | -l) xbps-query -l ;;
+        list | listinstalled | ls) xbps-query -s "" ;;
+        available | listavailable | la) xbps-query -Rs "" | grep -v "^\[\*" | cut -c 1-$(tput cols) ;;
+        all | listall | ll) xbps-query -Rs "" ;;
+        manual | listmanual | lm | -m) xbps-query -m ;;
+        repos | repo | listrepos | listrepo | repolist | lr | -L) xbps-query -L ;;
+
+        install | inst | in | add) test $1 && sudo xbps-install "$@" || echo "ERROR: missing required argument" ;;
+        reinstall | reinst | re) test $1 && sudo xbps-install -f "$@" || echo "ERROR: missing required argument" ;;
+        remove | rem | rm | uninstall | uninst | un | delete | del | erase) test $1 && sudo xbps-remove -R "$@" || echo "ERROR: missing required argument" ;;
+        removeonly | ro) test $1 && sudo xbps-remove "$@" || echo "ERROR: missing required argument" ;;
+        configure | conf | reconfigure | reconf | cfg) test $1 && sudo xbps-reconfigure -f "$@" || echo "ERROR: missing required argument" ;;
+        hold) test $1 && sudo xbps-pkgdb -m hold "$@" ; xbps-query -H ;;
+        unhold) test $1 && sudo xbps-pkgdb -m unhold "$@" ; xbps-query -H ;;
+        setauto) test $1 && sudo xbps-pkgdb -m auto "$@" || echo "ERROR: missing required argument" ;;
+        setmanual) test $1 && sudo xbps-pkgdb -m manual "$@" || echo "ERROR: missing required argument" ;;
+        search | se | -Rs | -sR) xbps-query -Rs "$@" ;;
+        searchlocal | sl | -s) xbps-query -s $@ ;;
+        show | details | detail | info | inf | -RS | -SR) xbps-query -RS "$@" || echo "ERROR: not found" ;;
+        showlocal | -S) xbps-query -S "$@" || echo "ERROR: not found" ;;
+        files | file | -Rf | -fR) xbps-query -Rf "$@" || echo "ERROR: not found" ;;
+        fileslocal | filelocal | -f) xbps-query -f "$@" || echo "ERROR: not found" ;;
+        owns | own | -o) xbps-query -o "$@" ;;
+        deps | dep | depends | -x) xbps-query -x "$@" || echo "ERROR: not found" ;;
+        revdeps | revdep | revdepends | rdeps | rdep | rdepends | -X) xbps-query -X "$@" || echo "ERROR: not found" ;;
+
+        *) cat << show_usage
+
+$FUNCNAME
+      check                -Mun
+      sync         (ref)
+      update       (up)    -Su
+      orphans
+      clean
+      status               -l
+      list         (ls)
+      available    (la)
+      all          (ll)
+      manual       (lm)    -m
+      repos        (lr)    -L
+
+      install      (in)
+      reinstall    (re)
+      remove       (rm)
+      removeonly   (ro)
+      configure    (cfg)
+      hold
+      unhold
+      setauto
+      setmanual
+      search       (se)    -Rs
+      searchlocal  (sl)    -s
+      show         (info)  -RS
+      showlocal            -S
+      files                -Rf
+      fileslocal           -f
+      owns                 -o
+      deps                 -x
+      revdeps              -X
+
+show_usage
+        xbps-query -V ;;
+    esac
+}
