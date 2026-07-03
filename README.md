@@ -1,1 +1,1 @@
-[Void Linux](https://voidlinux.org/) [XBPS](https://docs.voidlinux.org/xbps/) wrapper providing conventional syntax 
+[Void Linux](https://voidlinux.org/) [XBPS](https://docs.voidlinux.org/xbps/) wrapper providing conventional syntax similar to Debian's apt or Fedora's dnf
