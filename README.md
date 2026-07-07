@@ -2,7 +2,7 @@
 
 [Void Linux](https://voidlinux.org/) [XBPS](https://docs.voidlinux.org/xbps/) is a collection of separate tools each using their own options: `xbps-digest`, `xbps-query`, `xbps-uhelper`, `xbps-alternatives`, `xbps-fbulk`, `xbps-reconfigure`, `xbps-uunshare`, `xbps-checkvers`, `xbps-fetch`, `xbps-remove`, `xbps-create`, `xbps-install`, `xbps-rindex`, `xbps-dgraph`, `xbps-pkgdb`, `xbps-uchroot`.
 
-This BASH script (function) provides a single `xbps` command to simplify the most common tasks. It's a simple wrapper with conventional syntax similar to Debian's `apt` and Fedora's `dnf`.
+This BASH script (function) provides a single `xbps` command to simplify most common tasks. It's a simple wrapper with conventional syntax similar to Debian's `apt` and Fedora's `dnf`.
 
 # Syntax
 
@@ -52,7 +52,7 @@ XBPS: 0.60.7 API: 20250629 GIT: UNSET
 
 ## Aliases
 
-Whole words, partials words, shorthands, and `-` options can be used.
+Whole words, partials words, shorthands, and `-` options are recognized.
 
 ```
 check
