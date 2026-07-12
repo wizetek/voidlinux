@@ -1,10 +1,10 @@
-# About
+### About
+
+This BASH script provides a single `xbps` command to simplify most common package management tasks in Void Linux. It's a simple wrapper with conventional syntax resembling Debian's `apt` and Fedora's `dnf`.
 
 [Void Linux](https://voidlinux.org/) [XBPS](https://docs.voidlinux.org/xbps/) is a collection of separate tools each using their own options: `xbps-digest`, `xbps-query`, `xbps-uhelper`, `xbps-alternatives`, `xbps-fbulk`, `xbps-reconfigure`, `xbps-uunshare`, `xbps-checkvers`, `xbps-fetch`, `xbps-remove`, `xbps-create`, `xbps-install`, `xbps-rindex`, `xbps-dgraph`, `xbps-pkgdb`, `xbps-uchroot`.
 
-This BASH script (function) provides a single `xbps` command to simplify most common tasks. It's a simple wrapper with conventional syntax similar to Debian's `apt` and Fedora's `dnf`.
-
-# Syntax
+### Syntax
 
 `xbps <command> [arguments]`
 
@@ -12,7 +12,7 @@ Example:
 
 `xbps install vim`
 
-# Usage
+### Usage
 
 ```
 xbps
@@ -50,9 +50,9 @@ xbps
 XBPS: 0.60.7 API: 20250629 GIT: UNSET
 ```
 
-## Aliases
+### Aliases
 
-Whole words, partials words, shorthands, and `-` options are recognized.
+Whole words, partials words, shorthands, and `-` short options are recognized.
 
 ```
 check
